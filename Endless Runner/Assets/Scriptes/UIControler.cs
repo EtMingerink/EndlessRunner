@@ -14,12 +14,13 @@ public class UIControler : MonoBehaviour
     public void ShowGameOverScreen()
     {
 
+
         gameOverScreen.SetActive(true);
         //distanceTraveled.text = player.distanceTraveled.ToString();
         float roundedDistance = Mathf.Ceil(player.distanceTraveled);
-        distanceTraveled.TMP_Text = "" + roundedDistance;
+        distanceTraveled.text = "" + roundedDistance;
 
-        coinsCollected.TMP_Text = "" + player.collectedCoins;
+        coinsCollected.text = "" + player.collectedCoins;
 
     }
 

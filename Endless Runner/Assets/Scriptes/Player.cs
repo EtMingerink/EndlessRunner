@@ -16,6 +16,8 @@ public class Player : MonoBehaviour
     public float distanceTraveled;
     [SerializeField] UIControler uiController;
     public int collectedCoins;
+    [SerializeField] bool airJump = false;
+    
 
     private void Start()
     {
@@ -60,10 +62,13 @@ public class Player : MonoBehaviour
 
     void CheckForInput()
     {
-        if (isGrounded == true)
+        if (isGrounded == true || airJump == true)
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
+                if (airJump == true && isGrounded == false) {
+                    airJump = false;
+                }
                 jump = true;
                 anim.SetTrigger("Jump");
             }
@@ -81,7 +86,11 @@ public class Player : MonoBehaviour
                 anim.SetBool("IsGrounded", true);
 
             }
-            
+            else
+            {
+                isGrounded = false;
+
+            }
             //Debug.Log(hit.transform.name);
             Debug.DrawRay(raycastOrigin.position, Vector2.down, Color.green);
         }
@@ -104,6 +113,13 @@ public class Player : MonoBehaviour
     {
         if (collision.CompareTag("Collectable")) {
             collectedCoins++;
+            Destroy(collision.gameObject);
+
+
+
+        }
+        if (collision.CompareTag("airJump")) {
+            airJump = true;
             Destroy(collision.gameObject);
 
 

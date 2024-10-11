@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Obsticle
   - Collectable
+  - airJump
   layers:
   - Default
   - TransparentFX
