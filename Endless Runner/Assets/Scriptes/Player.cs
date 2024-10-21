@@ -17,8 +17,8 @@ public class Player : MonoBehaviour
     [SerializeField] UIControler uiController;
     public int collectedCoins;
     [SerializeField] bool airJump = false;
-    
-
+    [SerializeField]bool shieldIsActive;
+    [SerializeField]GameObject Shield;
     private void Start()
     {
         lastYPos = transform.position.y;
@@ -106,6 +106,19 @@ public class Player : MonoBehaviour
     {
         if (collision.transform.CompareTag("Obsticle"))
         {
+            if (shieldIsActive == true)
+            {
+
+                Shield.SetActive(false);
+                Destroy(collision.gameObject);
+            }
+            else {
+                uiController.ShowGameOverScreen();
+            }
+            
+        }
+        if (collision.transform.CompareTag("DeathBox"))
+        {
             uiController.ShowGameOverScreen();
         }
     }
@@ -124,6 +137,19 @@ public class Player : MonoBehaviour
 
 
         }
+
+        if (collision.CompareTag("Shield")) {
+            shieldIsActive = true;
+            Shield.SetActive(true);
+            Destroy(collision.gameObject) ;
+        
+        
+        
+        }
+
+
+
+
     }
 
 
