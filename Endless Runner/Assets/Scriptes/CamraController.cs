@@ -8,12 +8,14 @@ public class Cameracontroler : MonoBehaviour
     [SerializeField] Vector3 cameraVelocity;
     [SerializeField] float cameraSpeed = 1;
     [SerializeField] bool lookAtPlayer;
+    [SerializeField] float offset = 2;
+    
     void Update()
     {
         if (player.transform.position.y > 0 == true)
         {
             //transform.position = new Vector3(transform.position.x, player.position.y, transform.position.z);
-            Vector3 targetPosition = new Vector3(transform.position.x, player.position.y, transform.position.z);
+            Vector3 targetPosition = new Vector3(transform.position.x, player.position.y + offset, transform.position.z);
             transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref cameraVelocity, cameraSpeed);
             if (lookAtPlayer == true)
             {
@@ -22,7 +24,7 @@ public class Cameracontroler : MonoBehaviour
         if (player.transform.position.y < 0 == false)
         {
             //transform.position = new Vector3(transform.position.x, player.position.y, transform.position.z);
-            Vector3 targetPositionA = new Vector3(transform.position.x, player.position.y, transform.position.z);
+            Vector3 targetPositionA = new Vector3(transform.position.x, player.position.y + offset, transform.position.z);
             transform.position = Vector3.SmoothDamp(transform.position, targetPositionA, ref cameraVelocity, cameraSpeed);
             if (lookAtPlayer == true)
             {
