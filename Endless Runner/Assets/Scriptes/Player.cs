@@ -17,8 +17,10 @@ public class Player : MonoBehaviour
     [SerializeField] UIControler uiController;
     public int collectedCoins;
     [SerializeField] bool airJump = false;
-    [SerializeField]bool shieldIsActive;
-    [SerializeField]GameObject Shield;
+    [SerializeField] bool shieldIsActive;
+    [SerializeField] GameObject Shield;
+    [SerializeField] SFXManager sfxManage;
+
     private void Start()
     {
         lastYPos = transform.position.y;
@@ -126,6 +128,7 @@ public class Player : MonoBehaviour
     {
         if (collision.CompareTag("Collectable")) {
             collectedCoins++;
+            sfxManage.PlaySFX("Coin");
             Destroy(collision.gameObject);
 
 
@@ -133,6 +136,7 @@ public class Player : MonoBehaviour
         }
         if (collision.CompareTag("airJump")) {
             airJump = true;
+            sfxManage.PlaySFX("PowerupDoubleJump");
             Destroy(collision.gameObject);
 
 

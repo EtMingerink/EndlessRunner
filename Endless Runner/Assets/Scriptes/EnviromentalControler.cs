@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnviromentalControler : MonoBehaviour
 {
-    [SerializeField] GameObject environmentElement;
+    [SerializeField] GameObject[] environmentElement;
     [SerializeField] Transform referencePoint;
 
     
@@ -25,8 +25,9 @@ public class EnviromentalControler : MonoBehaviour
     {
         if (environmentElement != null && referencePoint != null)
         {
-            Instantiate(environmentElement, referencePoint.position, Quaternion.identity);
-            yield return new WaitForSeconds(3);
+            Vector3 offset = new Vector3(1, 0, 0);
+            Instantiate(environmentElement[Random.Range(0, environmentElement.Length)], referencePoint.position + offset, Quaternion.identity);
+            yield return new WaitForSeconds(Random.Range(3, 6));
             StartCoroutine(CreateEnvironmentElement());
         }
         else
