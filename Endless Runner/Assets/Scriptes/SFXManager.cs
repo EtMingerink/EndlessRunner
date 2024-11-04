@@ -15,7 +15,35 @@ public class SFXManager : MonoBehaviour
     [SerializeField] AudioClip gameOverHitSFX;
     public void PlaySFX(string clipToPlay)
     {
-        if(clipToPlay == "Coin")
+
+
+        switch (clipToPlay)
+        {
+            case "Coin":
+                audioSource.clip = coinSFX;
+                break;
+            case "PowerupDoubleJump":
+                audioSource.clip = powerupDoubleJumpSFX;
+                break;
+            case "Jump":
+                audioSource.clip = jumpSFX;
+                break;
+            case "Land":
+                audioSource.clip = landSFX;
+                break;
+            case "PowerupShield":
+                audioSource.clip = powerupShieldSFX;
+                break;
+            case "ShieldBreak":
+                audioSource.clip = shieldBreakSFX;
+                break;
+            case "GameOverHit":
+                audioSource.clip = gameOverHitSFX;
+                break;
+
+        }
+
+        /*if(clipToPlay == "Coin")
         {
             audioSource.clip = coinSFX;
         }
@@ -46,7 +74,7 @@ public class SFXManager : MonoBehaviour
         if (clipToPlay == "GameOverHit")
         {
             audioSource.clip = gameOverHitSFX;
-        }
+        }*/
 
         audioSource.Play();
 

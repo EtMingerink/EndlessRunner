@@ -9,8 +9,8 @@ public class PlatformCreater : MonoBehaviour
     [SerializeField] GameObject[] platformPrefab;
     [SerializeField] Transform referencePoint;
     [SerializeField] private GameObject lastCreatedPlatform;
-    [SerializeField] byte spaceBetweenPlatforms = 1;
     float lastPlatformWidth;
+    
     void Start()
     {
         //lastCreatedPlatform = Instantiate(platformPrefab, referencePoint.position, Quaternion.identity);
@@ -21,7 +21,8 @@ public class PlatformCreater : MonoBehaviour
         
         if (lastCreatedPlatform.transform.position.x < referencePoint.position.x)
         {
-            Vector3 targetCreationPoint = new Vector3(referencePoint.position.x + lastPlatformWidth +spaceBetweenPlatforms, 0, 0);
+            float randomSpaceInBetweenPlatforms = Random.Range(1, 3);
+            Vector3 targetCreationPoint = new Vector3(referencePoint.position.x + lastPlatformWidth + randomSpaceInBetweenPlatforms, 0, 0);
             int randomPlatform = Random.Range(0, 3);
             lastCreatedPlatform = Instantiate(platformPrefab[randomPlatform], targetCreationPoint, Quaternion.identity);
             BoxCollider2D collider = lastCreatedPlatform.GetComponent<BoxCollider2D>();
