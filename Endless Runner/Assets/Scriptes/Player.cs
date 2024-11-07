@@ -21,6 +21,9 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject Shield;
     [SerializeField] SFXManager sfxManager;
     [SerializeField] bool playerIsFalling;
+
+
+    Cameracontroler camController;
     private void Start()
     {
         lastYPos = transform.position.y;
